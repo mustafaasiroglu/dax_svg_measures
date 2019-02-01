@@ -1,0 +1,94 @@
+Custom Donut = 
+VAR X = ABS(ROUND(RANDBETWEEN(1,100),0))
+VAR Y = 100-X
+VAR XLABEL = "Attainment"
+VAR MinColor = "Red"
+VAR MaxColor = "Green"
+
+VAR SVG ="data:image/svg+xml;utf8,
+
+<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 42 42' >
+	<style>
+
+
+	.chart-text {
+	  font: 16px/1.4em 'Montserrat', Arial, sans-serif;
+	  fill: #000;
+	  -moz-transform: translateY(0.25em);
+	  -ms-transform: translateY(0.25em);
+	  -webkit-transform: translateY(0.25em);
+	  transform: translateY(0.25em);
+	}
+	.chart-number {
+	  font: 16px/1.4em 'Montserrat', Arial, sans-serif;
+	  font-size: 0.6em;
+	  line-height: 1;
+	  text-anchor: middle;
+	  transform: translateY(-0.2em);
+	}
+	.chart-label {
+	  font-size: 0.2em;
+	  text-anchor: middle;
+	  transform: translateY(1.2em);
+	}
+	.shape-circle {
+	  display: inline-block;
+	  vertical-align: middle;
+	  width: 32px;
+	  height: 32px;
+	  -webkit-border-radius: 50%;
+		 -moz-border-radius: 50%;
+			  border-radius: 50%;
+	}
+	.shape-fuschia {
+	  background-color: #ce4b99;
+	}
+	.shape-lemon-lime {
+	  background-color: #b1c94e;
+	}
+	.shape-blue {
+	  background-color: #377bbc;
+	}
+	.sr-only {
+	  position: absolute;
+	  width: 1px;
+	  height: 1px;
+	  margin: -1px;
+	  padding: 0;
+	  overflow: hidden;
+	  clip: rect(0,0,0,0);
+	  border: 0;
+	}
+	.donut-segment {
+	  animation: dash 1000ms;
+	}
+
+	@keyframes dash {
+	  from {
+		stroke-dasharray: 0 100;
+		stroke:red;
+	  }
+	  to {
+		stroke-dasharray: "&X&" "&Y&";
+		stroke:green;
+	  }
+	}
+	</style>
+
+      <circle class='donut-ring' cx='21' cy='21' r='15.91549430918954' fill='transparent' stroke='#d2d3d4' stroke-width='4' role='presentation'></circle>
+  
+      <circle class='donut-segment' cx='21' cy='21' r='15.91549430918954' fill='transparent' stroke='green' stroke-width='4' stroke-dasharray='"&X&" "&Y&"' stroke-dashoffset='25' > </circle>
+      
+  
+      <g class='chart-text'>
+        <text x='50%' y='50%' class='chart-number'>
+          "&X&"%
+        </text>
+        <text x='50%' y='50%' class='chart-label'>
+          "&XLABEL&"
+        </text>
+      </g>
+</svg>
+  "
+
+RETURN SVG
